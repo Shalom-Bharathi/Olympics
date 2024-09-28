@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Olympics 2024 Recap</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <header class="fixed top-0 left-0 right-0 bg-black bg-opacity-50 backdrop-blur-md z-40">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold flex items-center">
+                <img src="./assets/logo.png" alt="Olympic Rings" width="50" height="30" class="mr-2">
+                Paris 2024
+            </div>
+            <ul class="flex space-x-4">
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="#highlights" class="nav-link">Highlights</a></li>
+                <li><a href="#medals" class="nav-link">Medals</a></li>
+                <li><a href="#athletes" class="nav-link">Athletes</a></li>
+                <li><a href="#moments" class="nav-link">Moments</a></li>
+                <li><a href="#impact" class="nav-link">Impact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="relative z-10 text-center">
+                <h1 class="text-6xl font-bold mb-4 hero-element">Paris Olympics 2024</h1>
+                <p class="text-2xl mb-8 hero-element">Relive the moments that made history</p>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+        </section>
+        <section id="events" class="py-24">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold mb-16 text-center animate-item">Olympic Events</h2>
+                <div class="events-container animate-item" id="events-container">
+                    <nav class="events-nav" id="events-nav">
+                        <div class="absolute top-1 right-12 p-4">
+                            <div class="mac-window-controls flex items-center justify-center h-full">
+                                <div class="mac-button mac-close"></div>
+                                <div class="mac-button mac-minimize"></div>
+                                <div class="mac-button mac-maximize"></div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div id="event-content" style="margin-left: 60px; margin-top: 10px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="highlights" class="py-24 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold mb-16 text-center animate-item">Olympic Highlights</h2>
+                <div class="grid md:grid-cols-3 gap-8" id="highlights-grid">
+                </div>
+            </div>
+        </section>
+
+        <section id="medals" class="py-24">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold mb-16 text-center animate-item">Medal Count Overview</h2>
+                <input type="text" placeholder="Search for a country..." class="w-full p-2 mb-4 border border-gray-300 rounded" id="SearchInput">
+                <div class="mb-4" id="SearchContent"></div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-gray-800 rounded-lg p-8 shadow-lg animate-item">
+                        <h3 class="text-3xl font-bold mb-6">Country</h3>
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-700">
+                                    <th class="text-left py-2">Country</th>
+                                    <th class="text-left py-2">Gold</th>
+                                    <th class="text-left py-2">Silver</th>
+                                    <th class="text-left py-2">Bronze</th>
+                                    <th class="text-left py-2">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="medal-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-8 shadow-lg animate-item">
+                        <h3 class="text-3xl font-bold mb-6">Medal Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="medal-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="athletes" class="py-24 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold mb-16 text-center animate-item">Featured Athletes</h2>
+                <div class="grid md:grid-cols-3 gap-8" id="athletes-grid">
+                </div>
+            </div>
+        </section>
+
+        <section id="moments" class="py-24">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold mb-16 text-center animate-item">Memorable Moments</h2>
+                <div class="grid md:grid-cols-2 gap-8" id="moments-grid">
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-24 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold mb-16 text-center animate-item">Olympic Impact</h2>
+                <div class="flex justify-center mb-8 animate-item">
+                    <div class="inline-flex rounded-md shadow-sm" role="group" id="impact-tabs">
+                    </div>
+                </div>
+                <div class="animate-item" id="impact-content">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2024 Paris Olympics Recap. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#"  class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
